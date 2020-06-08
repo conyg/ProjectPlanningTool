@@ -5,16 +5,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting.Internal;
 using TeamBins.Common;
 using TeamBins.Common.Infrastructure.Enums.TeamBins.Helpers.Enums;
 using TeamBins.Common.ViewModels;
-
+using TeamBins.DataAccess;
 using TeamBins.DataAccessCore;
-using TeamBins.Infrastrucutre;
 using TeamBins.Infrastrucutre.Cache;
 using TeamBins.Infrastrucutre.Extensions;
-using TeamBins.DataAccess;
 
 namespace TeamBins.Services
 {

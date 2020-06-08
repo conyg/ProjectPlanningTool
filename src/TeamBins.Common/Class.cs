@@ -152,7 +152,7 @@ namespace TeamBins.Common.ViewModels
     }
     public class ProjectDto : BaseEntityDto
     {
-
+		public string Description { get; set; }
     }
     public class SettingsVm
     {

@@ -58,30 +58,6 @@ namespace TeamBins.DataAccess
                 con.Open();
                 var projects = con.Query<ProjectDto>("SELECT * FROM Project WITH (NOLOCK) WHERE TeamId=@teamId", new { @teamId = teamId });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 return projects;
             }
 
@@ -106,14 +82,13 @@ namespace TeamBins.DataAccess
                 con.Open();
                 if (model.Id == 0)
                 {
-                    var p = con.Query<int>("INSERT INTO Project(Name,TeamId,CreatedDate,CreatedByID) VALUES (@name,@teamId,@dt,@createdById);SELECT CAST(SCOPE_IDENTITY() as int)",
-                                            new { @name = model.Name, @teamId = model.TeamId, @dt = DateTime.Now, @createdById = model.CreatedById });
+                    var p = con.Query<int>("INSERT INTO Project(Name,Description,TeamId,CreatedDate,CreatedByID) VALUES (@name,@description,@teamId,@dt,@createdById);SELECT CAST(SCOPE_IDENTITY() as int)",
+                                            new { @name = model.Name, @description = model.Description, @teamId = model.TeamId, @dt = DateTime.Now, @createdById = model.CreatedById });
                     model.Id = p.First();
                 }
                 else
                 {
-                    con.Query<int>("UPDATE Project SET Name=@name WHERE Id=@id", new { @name = model.Name, @id = model.Id });
-
+                    con.Query<int>("UPDATE Project SET Name=@name, Description=@description WHERE Id=@id", new { @name = model.Name, @description = model.Description, @id = model.Id });
                 }
 
                 SetAsDefaultProjectIfNotExists(model);
@@ -166,7 +141,7 @@ namespace TeamBins.DataAccess
             using (var con = new SqlConnection(ConnectionString))
             {
                 con.Open();
-                var projects = con.Query<ProjectDto>(@"SELECT P.ID,P.Name from TeamMember TM
+                var projects = con.Query<ProjectDto>(@"SELECT P.ID,P.Name,P.Description FROM TeamMember TM
                                                 JOIN Project P ON P.ID = TM.DefaultProjectID 
                                                 where TM.TeamId =@teamId and MemberId=@memberId",
                                                 new { @teamId = teamId, @memberId = userId });

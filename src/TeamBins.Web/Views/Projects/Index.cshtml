@@ -11,7 +11,7 @@
 
         <table class="tblGrid table">
             <thead>
-                <tr><th>Name</th><th></th></tr>
+                <tr><th>Name</th><th>Description</th><th></th></tr>
             </thead>
             <tbody>
                 @foreach (var project in Model.Projects)
@@ -23,6 +23,9 @@
                     {
                                 <span class="def-project-item">Default project</span>
                             }
+                        </td>
+                        <td>
+                            @project.Description
                         </td>
                         <td>
                             <a asp-action="edit" class="popup" asp-route-id="@project.Id" asp-controller="Projects">Edit</a>

@@ -14,14 +14,20 @@
             </div>
             <div class="modal-body">
                 <div id="msg" style="display:none;"></div>
-                <table class="tblform sleek modelTblFull">
-                    <tr>
-                        <th>Project Name</th>
-                    </tr>
-                    <tr>
-                        <td>@Html.TextBoxFor(x=>x.Name)</td>
-                    </tr>
-                </table>
+				<table class="tblform sleek modelTblFull">
+					<tr>
+						<th>Project Name</th>
+					</tr>
+					<tr>
+						<td>@Html.TextBoxFor(x => x.Name)</td>
+					</tr>
+					<tr>
+						<th>Description</th>
+					</tr>
+					<tr>
+						<td>@Html.TextAreaFor(x => x.Description)</td>
+					</tr>
+				</table>
                 @Html.HiddenFor(x=>x.Id)
             </div>
             <div class="modal-footer">

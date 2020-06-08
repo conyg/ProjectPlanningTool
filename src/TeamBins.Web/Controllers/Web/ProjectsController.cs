@@ -35,8 +35,8 @@ namespace TeamBins.Web.Controllers.Web
                 {
                     Id = s.Id,
                     Name = s.Name,
+					Description = s.Description,
                     IsDefaultProject = (defaultProject != null && s.Id == defaultProject.Id)
-
                 }).ToList();
 
             }
@@ -58,6 +58,7 @@ namespace TeamBins.Web.Controllers.Web
             var addVm = new CreateProjectVM { Id = id };
             var p = _projectManager.GetProject(id);
             addVm.Name = p.Name;
+			addVm.Description = p.Description;
 
             return PartialView("Partial/Add", addVm);
         }
@@ -82,7 +83,7 @@ namespace TeamBins.Web.Controllers.Web
             catch (Exception ex)
             {
                 tc.TrackException(ex);
-                return Json(new { Status = "Error", Errors = new List<string> { "Error in saving project" } });
+                return Json(new { Status = "Error", Errors = new List<string> { "Error in saving project" , ex.Message} });
             }
         }
 
@@ -91,7 +92,7 @@ namespace TeamBins.Web.Controllers.Web
             var project = _projectManager.GetProject(id);
             if (project != null)
             {
-                var projectVm = new ProjectDetailsVM { Id = id, Name = project.Name };
+                var projectVm = new ProjectDetailsVM { Id = id, Name = project.Name, Description = project.Description };
                 /*
                 var projectMembers = project.ProjectMembers.ToList();
                 foreach (var item in projectMembers)

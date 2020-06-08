@@ -1,4 +1,4 @@
-﻿@model TechiesWeb.TeamBins.ViewModels.AddProjectMemberVM
+﻿@model TeamBins.Common.ViewModels.AddProjectMemberVM
 
 @using(Html.BeginForm("AddMember","Projects"))
 {       
@@ -18,7 +18,7 @@
                     <td>@Html.TextBoxFor(x=>x.Email)</td>
                 </tr>
                 </table>
-                @Html.HiddenFor(x=>x.ProjectId)            
+                @Html.HiddenFor(x=>x.ProjectID)            
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

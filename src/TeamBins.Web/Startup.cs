@@ -14,7 +14,7 @@ using TeamBins.Infrastrucutre.Filters;
 using TeamBins.Infrastrucutre.Services;
 using TeamBins.Services;
 using TeamBins.DataAccess;
-using Microsoft.AspNetCore.Server.Kestrel.Internal.Http;
+
 
 
 
@@ -31,7 +31,7 @@ namespace TeamBins.Web
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
-        public static ConnectionManager ConnectionManager;
+
         public IConfigurationRoot Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -75,6 +75,7 @@ namespace TeamBins.Web
             // Add framework services.
             services.AddMvc(o =>
             {
+                o.EnableEndpointRouting = false;
                 o.Filters.Add(new ReqProcessFilter());
             });
 
@@ -94,8 +95,6 @@ namespace TeamBins.Web
             }
             else
             {
-                app.UseApplicationInsightsRequestTelemetry();
-                app.UseApplicationInsightsExceptionTelemetry();
                 app.UseExceptionHandler("/Home/Error");
             }
             app.UseSession();

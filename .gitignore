@@ -218,3 +218,4 @@ pip-log.txt
 src/TeamBinsCore.Web/Properties/PublishProfiles/teambins - Web Deploy-publish.ps1
 *.jpg
 .vs
+.vshistory/
